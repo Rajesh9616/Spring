@@ -1,0 +1,1358 @@
+/****** Object:  Table [dbo].[wfl_config]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_config](
+	[config_key] [int] IDENTITY(1,1) NOT NULL,
+	[config_menu_code] [varchar](255) NULL,
+	[config_menu_name] [varchar](255) NULL,
+	[config_workflow_type] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[create_user] [varchar](255) NULL,
+	[create_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[last_modified_date] [datetime] NULL,
+ CONSTRAINT [PK__wfl_conf__BDF6033CC497E245] PRIMARY KEY CLUSTERED 
+(
+	[config_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_config_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_config_datapoints](
+	[wfl_config_datapoints_key] [int] IDENTITY(1,1) NOT NULL,
+	[config_datapoint_type] [varchar](255) NULL,
+	[config_key] [int] NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[wfl_config_datapoints_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_config_teams]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_config_teams](
+	[wfl_config_team_key] [int] IDENTITY(1,1) NOT NULL,
+	[config_key] [int] NULL,
+	[config_team_code] [varchar](255) NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[wfl_config_team_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_escalation]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_escalation](
+	[escalation_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[escalated_to] [varchar](255) NULL,
+	[escalation_date_time] [datetime2](7) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[escalation_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_reminders]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_reminders](
+	[reminder_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[last_reminder_date_time] [datetime2](7) NULL,
+	[task_key] [int] NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[reminder_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_task_product_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_task_product_datapoints](
+	[task_product_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[task_key] [int] NOT NULL,
+	[product_field] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[create_user] [varchar](50) NULL,
+	[create_date] [datetime] NULL,
+	[last_modified_user] [varchar](50) NULL,
+	[last_modified_date] [datetime] NULL,
+ CONSTRAINT [PK__wfl_task__1B229A1B8CE2AD2E] PRIMARY KEY CLUSTERED 
+(
+	[task_product_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_categories]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_categories](
+	[category_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_description] [varchar](255) NULL,
+	[category_is_active] [bit] NULL,
+	[category_name] [varchar](255) NULL,
+	[category_template_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[dependent_category] [int] NULL,
+	[consolidated_estimated_time] [int] NULL,
+	[sequence_no] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[category_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_category_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_category_datapoints](
+	[data_point_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[data_caption] [varchar](255) NULL,
+	[data_point_name] [varchar](255) NULL,
+	[data_type] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[is_mandatory] [bit] NULL,
+	[is_visible] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[list_key] [int] NULL,
+	[template_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[data_point_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_category_task_approvals]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_category_task_approvals](
+	[task_approval_key] [int] IDENTITY(1,1) NOT NULL,
+	[approve_task_key] [int] NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[template_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_approval_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_category_task_links]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_category_task_links](
+	[category_tasks_link_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[linked_task_key] [int] NULL,
+	[template_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[category_tasks_link_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_category_task_owners]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_category_task_owners](
+	[template_task_owner_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[escalation_owner_place_holder] [varchar](255) NULL,
+	[escalation_owner_team_code] [varchar](255) NULL,
+	[escalation_owner_user_key] [int] NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[picked_up] [varchar](255) NULL,
+	[picked_up_user_id] [varchar](255) NULL,
+	[place_holder] [varchar](255) NULL,
+	[task_entry_criteria] [varchar](255) NULL,
+	[team_code] [varchar](255) NULL,
+	[template_task_key] [int] NULL,
+	[user_id] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[template_task_owner_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_category_task_rejections]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_category_task_rejections](
+	[task_rejection_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[reject_task_key] [int] NULL,
+	[task_key] [int] NULL,
+	[template_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_rejection_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_category_tasks]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_category_tasks](
+	[template_task_key] [int] IDENTITY(1,1) NOT NULL,
+	[alert_requester] [bit] NULL,
+	[alert_user] [bit] NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[escalate_after] [int] NULL,
+	[escalate_after_type] [varchar](255) NULL,
+	[escalate_to] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[last_task] [bit] NULL,
+	[no_of_remainders] [int] NULL,
+	[remind_after] [int] NULL,
+	[remind_after_type] [varchar](255) NULL,
+	[reminder_sla] [int] NULL,
+	[reminder_sla_type] [varchar](255) NULL,
+	[sequence_no] [int] NULL,
+	[sla] [int] NULL,
+	[sla_type] [varchar](255) NULL,
+	[task_caption] [varchar](255) NULL,
+	[task_is_completed] [bit] NULL,
+	[task_status_caption] [varchar](255) NULL,
+	[task_type] [varchar](255) NULL,
+	[consolidated_estimated_time] [int] NULL,
+	[task_approval_condition] [varchar](255) NULL,
+	[conditional_approve_task] [int] NULL,
+	[conditional_rejection_task] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[template_task_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_datapoint_maps]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_datapoint_maps](
+	[data_points_map_key] [int] IDENTITY(1,1) NOT NULL,
+	[template_key] [int] NULL,
+	[task_key] [int] NULL,
+	[data_point_key] [int] NULL,
+	[task_sequence_no] [int] NULL,
+	[readable] [bit] NULL,
+	[writable] [bit] NULL,
+	[mandatory] [bit] NULL,
+	[is_active] [bit] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[datapoint_type] [varchar](255) NULL,
+ CONSTRAINT [PK__wfl_temp__789E53C99BF25FCD] PRIMARY KEY CLUSTERED 
+(
+	[data_points_map_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_email_task]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_email_task](
+	[email_task_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[email_task_email_content] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[template_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email_task_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_email_task_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_email_task_datapoints](
+	[email_task_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[datapoint_key] [int] NULL,
+	[email_task_key] [int] NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[template_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email_task_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_email_task_users]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_email_task_users](
+	[email_task_users_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[email_task_key] [int] NULL,
+	[email_task_user_id] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[template_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email_task_users_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_raisable_teams]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_raisable_teams](
+	[template_raisable_teams_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[team_code] [varchar](255) NULL,
+	[template_key] [int] NULL,
+ CONSTRAINT [PK_wfl_template_raisable_teams] PRIMARY KEY CLUSTERED 
+(
+	[template_raisable_teams_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_raisable_users]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_raisable_users](
+	[template_raisable_users_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[template_key] [int] NULL,
+	[user_id] [varchar](255) NULL,
+ CONSTRAINT [PK_wfl_template_raisable_users] PRIMARY KEY CLUSTERED 
+(
+	[template_raisable_users_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_task_client_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_task_client_datapoints](
+	[task_client_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[client_field] [varchar](255) NULL,
+	[client_field_access] [varchar](255) NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_client_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_task_product_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_task_product_datapoints](
+	[task_product_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[product_field] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[product_field_access] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_product_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_task_rule_group]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_task_rule_group](
+	[task_rule_group_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[task_rule_group_group_key] [int] NULL,
+	[task_rule_group_logic] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_rule_group_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_task_rules]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_task_rules](
+	[task_rule_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_group_key] [int] NULL,
+	[task_key] [int] NULL,
+	[task_rule_datapoint_key] [int] NULL,
+	[task_rule_logic] [varchar](255) NULL,
+	[task_rule_operator] [varchar](255) NULL,
+	[task_rule_value] [varchar](255) NULL,
+	[task_rule_value_code] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_rule_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_teams]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_teams](
+	[template_teams_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[team_code] [varchar](255) NULL,
+	[template_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[template_teams_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_template_users]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_template_users](
+	[template_users_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[template_key] [int] NULL,
+	[user_id] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[template_users_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_templates]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_templates](
+	[template_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[template_desc] [varchar](255) NULL,
+	[template_is_active] [bit] NULL,
+	[template_name] [varchar](255) NULL,
+	[template_definition_type] [varchar](255) NULL,
+	[template_type] [varchar](255) NULL,
+	[template_config_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[template_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_categories]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_categories](
+	[category_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_description] [varchar](255) NULL,
+	[category_is_active] [bit] NULL,
+	[category_name] [varchar](255) NULL,
+	[category_workflow_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[is_ready] [bit] NULL,
+	[dependent_category] [int] NULL,
+	[category_is_completed] [bit] NULL,
+	[consolidated_actual_time] [int] NULL,
+	[consolidated_estimated_time] [int] NULL,
+	[sequence_no] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[category_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_category_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_category_datapoints](
+	[data_point_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[data_caption] [varchar](255) NULL,
+	[data_point_name] [varchar](255) NULL,
+	[data_type] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[is_mandatory] [bit] NULL,
+	[is_visible] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[list_key] [int] NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[data_point_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_category_task_approvals]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_category_task_approvals](
+	[task_approval_key] [int] IDENTITY(1,1) NOT NULL,
+	[approve_task_key] [int] NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_approval_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_category_task_links]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_category_task_links](
+	[category_tasks_link_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[linked_task_key] [int] NULL,
+	[workflow_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[category_tasks_link_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_category_task_owners]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_category_task_owners](
+	[workflow_task_owner_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[escalation_owner_place_holder] [varchar](255) NULL,
+	[escalation_owner_team_code] [varchar](255) NULL,
+	[escalation_owner_user_key] [int] NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[picked_up] [varchar](255) NULL,
+	[picked_up_user_id] [varchar](255) NULL,
+	[place_holder] [varchar](255) NULL,
+	[task_entry_criteria] [varchar](255) NULL,
+	[team_code] [varchar](255) NULL,
+	[user_id] [varchar](255) NULL,
+	[workflow_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[workflow_task_owner_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_category_task_rejections]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_category_task_rejections](
+	[task_rejection_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[reject_task_key] [int] NULL,
+	[task_key] [int] NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_rejection_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_category_tasks]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_category_tasks](
+	[workflow_task_key] [int] IDENTITY(1,1) NOT NULL,
+	[task_caption] [varchar](255) NULL,
+	[submit_date] [datetime2](7) NULL,
+	[task_status_caption] [varchar](255) NULL,
+	[alert_requester] [bit] NULL,
+	[alert_user] [bit] NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[escalate_after] [int] NULL,
+	[escalate_after_type] [varchar](255) NULL,
+	[escalate_to] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[last_task] [bit] NULL,
+	[no_of_remainders] [int] NULL,
+	[remind_after] [int] NULL,
+	[remind_after_type] [varchar](255) NULL,
+	[reminder_sla] [int] NULL,
+	[reminder_sla_type] [varchar](255) NULL,
+	[sequence_no] [int] NULL,
+	[sla] [int] NULL,
+	[sla_type] [varchar](255) NULL,
+	[task_is_completed] [bit] NULL,
+	[task_type] [varchar](255) NULL,
+	[completed_by] [varchar](50) NULL,
+	[completion_date] [datetime] NULL,
+	[escalation_done] [bit] NULL,
+	[no_of_remainders_pending] [int] NULL,
+	[consolidated_actual_time] [int] NULL,
+	[consolidated_estimated_time] [int] NULL,
+	[task_approval_condition] [varchar](255) NULL,
+	[conditional_approve_task] [int] NULL,
+	[conditional_rejection_task] [int] NULL,
+	[is_active_branchout_task] [bit] NULL,
+ CONSTRAINT [PK__wfl_work__209410CAE6A83288] PRIMARY KEY CLUSTERED 
+(
+	[workflow_task_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_datapoint_attachments]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_datapoint_attachments](
+	[wfl_workflow_datapoint_attachment_key] [int] IDENTITY(1,1) NOT NULL,
+	[wfl_datapoint_key] [int] NOT NULL,
+	[wfl_task_key] [int] NOT NULL,
+	[wfl_attachment_name] [varchar](255) NULL,
+	[wfl_datapoint_attachment] [varbinary](max) NULL,
+	[is_active] [bit] NULL,
+	[create_user] [varchar](255) NULL,
+	[create_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[last_modified_date] [datetime] NULL,
+ CONSTRAINT [PK__wfl_work__772A43265196191A] PRIMARY KEY CLUSTERED 
+(
+	[wfl_workflow_datapoint_attachment_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_datapoint_attachments_audit]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_datapoint_attachments_audit](
+	[wfl_workflow_datapoint_attachment_audit_key] [int] IDENTITY(1,1) NOT NULL,
+	[wfl_task_key] [int] NULL,
+	[wfl_datapoint_key] [int] NULL,
+	[wfl_attachment_name] [varchar](255) NULL,
+	[wfl_datapoint_attachment] [varbinary](max) NULL,
+	[user_id] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[create_user] [varchar](255) NULL,
+	[create_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[last_modified_date] [datetime] NULL,
+ CONSTRAINT [PK__wfl_work__772A4326FB66CED4] PRIMARY KEY CLUSTERED 
+(
+	[wfl_workflow_datapoint_attachment_audit_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_datapoint_maps]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_datapoint_maps](
+	[data_points_map_key] [int] IDENTITY(1,1) NOT NULL,
+	[workflow_key] [int] NULL,
+	[task_key] [int] NULL,
+	[data_point_key] [int] NULL,
+	[task_sequence_no] [int] NULL,
+	[readable] [bit] NULL,
+	[writable] [bit] NULL,
+	[mandatory] [bit] NULL,
+	[is_active] [bit] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[datapoint_type] [varchar](255) NULL,
+ CONSTRAINT [PK__wfl_work__789E53C9FC2FC0AE] PRIMARY KEY CLUSTERED 
+(
+	[data_points_map_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_datapoint_values]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_datapoint_values](
+	[workflow_datapoint_values_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[datapoint_key] [int] NULL,
+	[datapoint_value] [varchar](max) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[workflow_key] [int] NULL,
+ CONSTRAINT [PK__wfl_work__3D1B008D0DAB06C6] PRIMARY KEY CLUSTERED 
+(
+	[workflow_datapoint_values_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_datapoint_values_audit]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_datapoint_values_audit](
+	[workflow_datapoint_values_audit_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[datapoint_key] [int] NULL,
+	[datapoint_value] [varchar](max) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[user_id] [varchar](255) NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[workflow_datapoint_values_audit_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_email_task]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_email_task](
+	[email_task_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[email_task_email_content] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[workflow_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email_task_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_email_task_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_email_task_datapoints](
+	[email_task_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[datapoint_key] [int] NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[workflow_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email_task_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_email_task_users]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_email_task_users](
+	[email_task_users_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[email_task_user_id] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[workflow_task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email_task_users_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_task_client_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_task_client_datapoints](
+	[task_client_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[client_field] [varchar](255) NULL,
+	[client_field_access] [varchar](255) NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_client_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_task_product_datapoints]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_task_product_datapoints](
+	[task_product_datapoint_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[product_field] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[product_field_access] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_product_datapoint_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_task_rule_group]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_task_rule_group](
+	[task_rule_group_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_key] [int] NULL,
+	[task_rule_group_group_key] [int] NULL,
+	[task_rule_group_logic] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_rule_group_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_task_rules]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_task_rules](
+	[task_rule_key] [int] IDENTITY(1,1) NOT NULL,
+	[create_date] [datetime] NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime] NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[task_group_key] [int] NULL,
+	[task_key] [int] NULL,
+	[task_rule_datapoint_key] [int] NULL,
+	[task_rule_logic] [varchar](255) NULL,
+	[task_rule_operator] [varchar](255) NULL,
+	[task_rule_value] [varchar](255) NULL,
+	[task_rule_value_code] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[task_rule_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_teams]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_teams](
+	[workflow_teams_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[team_code] [varchar](255) NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[workflow_teams_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflow_users]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflow_users](
+	[workflow_users_key] [int] IDENTITY(1,1) NOT NULL,
+	[category_key] [int] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[is_active] [bit] NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[user_id] [varchar](255) NULL,
+	[workflow_key] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[workflow_users_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[wfl_workflows]    Script Date: 5/13/2016 6:06:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[wfl_workflows](
+	[workflow_key] [int] IDENTITY(1,1) NOT NULL,
+	[workflow_name] [varchar](255) NULL,
+	[workflow_desc] [varchar](255) NULL,
+	[workflow_is_completed] [bit] NULL,
+	[workflow_is_active] [bit] NULL,
+	[create_date] [datetime2](7) NULL,
+	[create_user] [varchar](255) NULL,
+	[last_modified_date] [datetime2](7) NULL,
+	[last_modified_user] [varchar](255) NULL,
+	[workflow_definition_type] [varchar](255) NULL,
+	[workflow_type] [varchar](255) NULL,
+	[workflow_config_key] [int] NULL,
+ CONSTRAINT [PK__wfl_work__BE449FCF4E64822C] PRIMARY KEY CLUSTERED 
+(
+	[workflow_key] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
